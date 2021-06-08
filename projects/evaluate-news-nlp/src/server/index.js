@@ -6,7 +6,7 @@ const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 
 // declare API credentials
-var textapi = new aylien({
+var textapi = new meaningCloud({
     application_key: process.env.API_KEY
   });
 
