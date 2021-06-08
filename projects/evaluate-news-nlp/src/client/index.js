@@ -7,7 +7,8 @@ import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
 
-console.log(checkForName);
-
-alert("I EXIST")
-console.log("CHANGE!!");
+// Export all js from index.js to the Client library
+export {
+    checkForName,
+    handleSubmit
+}

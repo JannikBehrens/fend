@@ -8,6 +8,11 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
+    output: {
+        libraryTarget: 'var',
+        // Make all js code accessible through Client library
+        library: 'Client'
+    },
     module: {
         rules: [
             {
