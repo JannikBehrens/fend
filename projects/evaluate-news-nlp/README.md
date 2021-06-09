@@ -12,3 +12,10 @@ The app will call the meaningcloud API and return the confidence in the evaluati
 -Webpack as a build tool
 -API Call (meaningcloud)
 -Offline Functionality (workbox plugin)
+
+## Key Commands
+
+-npm run build-dev
+npm run build-prod
+npm start
+npm run test
