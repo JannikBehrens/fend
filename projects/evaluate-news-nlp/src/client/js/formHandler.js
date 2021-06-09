@@ -1,8 +1,6 @@
 function handleSubmit(e) {
     e.preventDefault()
-
-    //const apiKey = process.env.API_KEY
-    
+  
     const apiUrl = "https://api.meaningcloud.com/sentiment-2.1?key="
     // check what text was put into the form field
     const inputUrl = document.getElementById('name').value
@@ -73,10 +71,10 @@ function handleSubmit(e) {
     
     const getKey = async () => {
         const request = await fetch('/all');
-        //console.log("API key direct after fetch: ", request)
+        
         try {
             const apiKey = await request.json();
-            //console.log("API Key from getKey after json: ",apiKey.key)
+           
             return apiKey
             } catch(error){
             console.log('Error in updateUI: ', error)
