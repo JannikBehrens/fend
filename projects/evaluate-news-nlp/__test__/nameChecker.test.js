@@ -2,12 +2,12 @@
 import { validateUrl } from "../src/client/js/nameChecker.js";
 
 describe("Correct URLs", () => {
-  test("should return true (https)", () => {
-    const input = "https://www.udacity.com";
-    expect(validateUrl(input)).toBe(true);
-  });
   test("should return true (http)", () => {
     const input = "http://www.udacity.com";
+    expect(validateUrl(input)).toBe(true);
+  });
+  test("should return true (https)", () => {
+    const input = "https://www.udacity.com";
     expect(validateUrl(input)).toBe(true);
   });
 });
