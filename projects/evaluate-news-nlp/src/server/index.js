@@ -5,10 +5,9 @@ var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 
-// declare API credentials
-//const apiKey = process.env.API_KEY;
-const apiKey = "9f7225fb95e956c7abd63fb730ab2d7a";
-const url = "https://api.meaningcloud.com/sentiment-2.1?key=";
+//declare API credentials
+const apiKey = {key: process.env.API_KEY};
+//const url = "https://api.meaningcloud.com/sentiment-2.1?key=";
 
 
 const app = express()
@@ -29,7 +28,8 @@ app.listen(8081, function () {
 
 app.get('/all', (request, response) => {
     //response.send('Hello World')
-    response.send(projectData)
+    response.send(apiKey)
+    
     
 });
 

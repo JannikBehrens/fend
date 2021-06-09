@@ -1,43 +1,88 @@
 function handleSubmit(e) {
     e.preventDefault()
 
-    const apiKey = '9f7225fb95e956c7abd63fb730ab2d7a'
+    //const apiKey = process.env.API_KEY
+    
     const apiUrl = "https://api.meaningcloud.com/sentiment-2.1?key="
     // check what text was put into the form field
     const inputUrl = document.getElementById('name').value
-    console.log(inputUrl)
-    Client.checkText(apiUrl, apiKey, inputUrl)
+    if (Client.validateUrl(inputUrl)) {
+    Client.getKey()
+    .then(function(key){
+        
+    Client.checkText(apiUrl, key.key, inputUrl)
     .then(function(data){
         const confidence = data.confidence;
         console.log("Confidence: ",confidence)
         const subjectivity = data.subjectivity;
         console.log("Subjectivity :", subjectivity)
-        const score = data.score_tag;
-        console.log("Score :" , score)
-        document.getElementById('result').innerHTML=`Confidence: ${confidence}`;
+        const score_tag = data.score_tag;
+        console.log("Score :" , score_tag)
+        // transform the score_tag
+        score = ""
+        switch(score_tag){
+        case "P+":
+            score = "Strong Positive";
+            break
+        case "P":
+            score = "Positive";
+            break;
+        case "NEU":
+            score = "Neutral";
+            break;
+        case "N":
+            score = "Negative";
+            break;
+        case "N+":
+            score = "Strong Negative";
+            break;
+        case "None":
+            score = "Without Polarity";
+            break;
+        default:
+            score = "Test for polarity failed"
+        }
+        // Update UI
+        document.getElementById('result').innerHTML=`Confidence of the analysis (0-100): ${confidence}`;
         document.getElementById('objectivity').innerHTML=`Subjectivity: ${subjectivity}`;
-        document.getElementById('score').innerHTML=`Score: ${score}`;
+        document.getElementById('score').innerHTML=`Polarity Score: ${score}`;
         
-        });
+        })});
+    } else {
+        console.log('Please use a valid url');
+        alert('Please use a valid url')
+    }
+
     };
 
     
-    /* Function to GET Web API Data*/
+    /* Function to GET  API Data*/
     const checkText = async (apiUrl, apiKey, inputUrl) => {
-        //console.log(apiUrl+zip+apiKey)
+        
         // fetch api
         const response = await fetch(`${apiUrl}${apiKey}&lang=auto&url=${inputUrl}`)
-        console.log("Response in checkText: ",response)
+        //console.log("Response in checkText: ",response)
         try {
             const textData = await response.json();
-            //console.log(weatherData);
+            
             return textData;
         } catch(error){
             console.log('Error in checkText: ', error);
      }
     }
     
+    const getKey = async () => {
+        const request = await fetch('/all');
+        //console.log("API key direct after fetch: ", request)
+        try {
+            const apiKey = await request.json();
+            //console.log("API Key from getKey after json: ",apiKey.key)
+            return apiKey
+            } catch(error){
+            console.log('Error in updateUI: ', error)
+            }}
 
+   
 
 
 
@@ -45,5 +90,5 @@ function handleSubmit(e) {
 
 export { handleSubmit }
 export { checkText }
-//export { postData }
-//export { updateUI }
+export { getKey }
+

@@ -12,33 +12,31 @@
 
   <body>
     <header>
-      <div class="">Logo</div>
-      <div class="">navigation</div>
+      <div class="title">Natural Language Processing App</div>
     </header>
 
     <main>
       <section>
-        <form class="" onsubmit="return Client.handleSubmit(event)">
+        <form class="form" onsubmit="return Client.handleSubmit(event)">
           <input
             id="name"
             type="text"
             name="input"
             value=""
-            onblur="onBlur()"
-            placeholder="Name"
+            placeholder="Input URL you want to check with NLP"
           />
           <input
             type="submit"
             name=""
-            value="submit"
+            value="Submit"
             onclick="return Client.handleSubmit(event)"
             onsubmit="return Client.handleSubmit(event)"
           />
         </form>
       </section>
 
-      <section>
-        <strong>Form Results:</strong>
+      <section id="results">
+        <strong>NLP Results:</strong>
         <div id="result"></div>
         <div id="objectivity"></div>
         <div id="score"></div>
@@ -46,7 +44,7 @@
     </main>
 
     <footer>
-      <p>This is a footer</p>
+      <p>Project by Udacity & Jannik</p>
     </footer>
   </body>
 </html>

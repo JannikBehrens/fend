@@ -3,6 +3,8 @@ import { handleSubmit } from './js/formHandler'
 //import { postData } from './js/formHandler'
 import { checkText } from './js/formHandler'
 //import { updateUI } from './js/formHandler'
+import { getKey } from './js/formHandler'
+import { validateUrl } from './js/nameChecker'
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -17,4 +19,6 @@ export {
     //postData,
     checkText,
     //updateUI
+    getKey,
+    validateUrl
 }
